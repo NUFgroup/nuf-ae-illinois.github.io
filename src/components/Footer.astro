@@ -1,0 +1,52 @@
+---
+// Footer.astro
+// Site footer with branding, page links, and resource links.
+// Update resource links (GitHub, Docs, arXiv) when they become available.
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="logo-mark">NUF</div>
+        <div>
+          <p class="footer-group-name">Numerics &amp; Unsteady Flows Group</p>
+          <p class="footer-dept">Department of Aerospace Engineering</p>
+          <p class="footer-dept">University of Illinois Urbana-Champaign</p>
+        </div>
+      </div>
+      <p class="footer-tagline">
+        Advancing computational fluid dynamics through rigorous numerics
+        and physical insight into unsteady flow phenomena.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="/">Home</a>
+        <a href="/research">Research</a>
+        <a href="/team">Team</a>
+        <a href="/publications">Publications</a>
+        <a href="/software">Software</a>
+        <a href="/news">News</a>
+        <a href="/contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="https://github.com/NUFgroup/Immersa.jl" target="_blank" rel="noopener noreferrer">Immersa.jl GitHub</a>
+        <a href="https://aerospace.illinois.edu/" target="_blank" rel="noopener noreferrer">AE @ UIUC</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; {year} Numerics &amp; Unsteady Flows Group, UIUC. All rights reserved.</p>
+      <p>Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a></p>
+    </div>
+  </div>
+</footer>

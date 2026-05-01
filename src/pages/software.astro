@@ -1,0 +1,116 @@
+---
+// software.astro — Software page
+// To add a new software package, duplicate the <article> block
+// below and fill in the details.  Each package follows the same
+// .software-feature card structure.
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Software | NUF Group — UIUC"
+  description="Open-source scientific software from the NUF Group — including Immersa.jl, a Julia package for immersed boundary simulations."
+>
+
+  <section class="hero-page">
+    <div class="container">
+      <span class="section-label">Software</span>
+      <h1 class="hero-page-title">Open-Source Software</h1>
+      <p class="hero-page-desc">We develop and maintain scientific software tools that are freely available to the research community.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <!-- ── Immersa.jl ── -->
+      <article class="software-feature">
+
+        <div class="software-header">
+          <div class="software-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
+          <div>
+            <div class="software-meta">
+              <span class="sw-badge sw-lang">Julia</span>
+              <span class="sw-badge sw-license">MIT</span>
+              <span class="sw-badge sw-version">v0.0.1</span>
+            </div>
+            <h2 class="software-name">Immersa.jl</h2>
+            <p class="software-tagline">High-performance immersed boundary simulations in Julia</p>
+          </div>
+        </div>
+
+        <div class="software-body">
+          <div class="software-desc">
+            <p>Immersa.jl is an open-source Julia package for immersed boundary simulations of incompressible viscous flows. It provides a modular, composable framework for solving fluid–structure interaction problems on Cartesian grids, supporting both rigid and elastic bodies.</p>
+            <p>The package is designed for research and educational use, with a clean API, extensive documentation, and reproducible example notebooks.</p>
+            <div class="software-actions">
+              <a href="https://github.com/NUFgroup/Immersa.jl" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                View on GitHub
+              </a>
+              <a href="https://nufgroup.github.io/Immersa.jl/dev/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Documentation
+              </a>
+            </div>
+          </div>
+          <div class="software-features">
+            <p class="features-heading">Key Features</p>
+            <ul class="features-list">
+              <li class="feature-item">
+                <svg class="feature-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Streamfunction–vorticity formulation of the Navier–Stokes equations
+              </li>
+              <li class="feature-item">
+                <svg class="feature-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Rigid and elastic body motion
+              </li>
+              <li class="feature-item">
+                <svg class="feature-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                CPU and GPU support via AbstractKernels.jl
+              </li>
+              <li class="feature-item">
+                <svg class="feature-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                AD support for sensitivity analysis and optimization
+              </li>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-dot"></span>
+            <span class="code-dot"></span>
+            <span class="code-dot"></span>
+            <span class="code-lang">julia</span>
+          </div>
+          <pre class="code-pre"><span class="kw">using</span> Pkg
+Pkg.add(url="https://github.com/NUFgroup/Immersa.jl")
+<span class="kw">using</span> Immersa</pre>
+        </div>
+
+      </article>
+      <!-- ── End Immersa.jl ── -->
+      <!-- TODO: add more software packages here following the same structure -->
+
+    </div>
+  </section>
+
+  <!-- ── Contributing ── -->
+   <!-- TODO: update the contribution guide link and details below -->
+  <section class="section section-alt">
+    <div class="container contrib-section">
+      <span class="section-label">Open Source</span>
+      <h2>Contributing</h2>
+      <p>All our software is developed openly. Bug reports, feature requests, and pull requests are welcome. If you use our software in your research, please cite the corresponding paper and star the repository.</p>
+      <a href="#" class="btn btn-outline" style="margin-top:1.5rem;">Contribution Guide</a>
+    </div>
+  </section>
+
+</BaseLayout>

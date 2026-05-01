@@ -1,0 +1,73 @@
+---
+// publications.astro — Publications page
+// All publication data lives in src/data/publications.ts.
+// To add a paper: add an entry to PUBLICATIONS and, if it's
+// a new year, add the year to PUB_YEARS in that same file.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { PUBLICATIONS, PUB_YEARS } from '../data/publications';
+
+// Group publications by year for the main list (reversed so newest within a year is first)
+const byYear = new Map<number, typeof PUBLICATIONS>();
+for (const year of PUB_YEARS) {
+  byYear.set(year, PUBLICATIONS.filter(p => p.year === year).reverse());
+}
+---
+<BaseLayout
+  title="Publications | NUF Group — UIUC"
+  description="Full list of publications from the NUF Group at UIUC."
+>
+
+  <section class="hero-page">
+    <div class="container">
+      <span class="section-label">Publications</span>
+      <h1 class="hero-page-title">Publications</h1>
+      <p class="hero-page-desc">Peer-reviewed journal articles, conference papers, and preprints from the Numerics and Unsteady Flows Group. Click the DOI to access the paper links.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container pubs-layout">
+
+      <!-- ── Sidebar ── -->
+      <aside class="pubs-sidebar">
+        <div class="sidebar-card">
+          <h3>Jump to Year</h3>
+          <nav class="year-nav">
+            {PUB_YEARS.map(year => (
+              <a href={`#year-${year}`} class="year-link">{year}</a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+      <!-- ── Publication list ── -->
+      <div class="pubs-main">
+        {PUB_YEARS.map(year => (
+          <div id={`year-${year}`} class="year-group">
+            <h2 class="year-heading">{year}</h2>
+            <div class="pub-list">
+              {(byYear.get(year) ?? []).map(pub => (
+                <article class={`pub-item${pub.highlighted ? ' highlighted' : ''}`}>
+                  {pub.highlighted && <div class="pub-highlight-bar"></div>}
+                  <div class="pub-body">
+                    <p class="pub-title">{pub.title}</p>
+                    <p class="pub-authors">{pub.authors}</p>
+                    <p class="pub-venue"><em>{pub.venue}</em>, {pub.year}</p>
+                    <div class="pub-links">
+                      {pub.doi   && <a href={pub.doi}   class="pub-link pub-link-doi"   target="_blank" rel="noopener noreferrer">DOI</a>}
+                      {pub.pdf   && <a href={pub.pdf}   class="pub-link pub-link-pdf"   target="_blank" rel="noopener noreferrer">PDF</a>}
+                      {pub.arxiv && <a href={pub.arxiv} class="pub-link pub-link-arxiv" target="_blank" rel="noopener noreferrer">arXiv</a>}
+                    </div>
+                  </div>
+                  <span class="pub-year">{pub.year}</span>
+                </article>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>

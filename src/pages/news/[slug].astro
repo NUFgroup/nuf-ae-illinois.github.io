@@ -1,0 +1,59 @@
+---
+// news/[slug].astro — News detail page (generated for each item)
+// One static page is built per news item using getStaticPaths.
+//
+// To add a news item with its own detail page:
+//   → Edit src/data/news.ts only.  No changes needed here.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { NEWS } from '../../data/news';
+import type { NewsItem } from '../../data/news';
+
+export function getStaticPaths() {
+  return NEWS.map(item => ({
+    params: { slug: item.slug },
+    props:  { item },
+  }));
+}
+
+interface Props { item: NewsItem; }
+const { item } = Astro.props;
+---
+<BaseLayout
+  title={`${item.title} | NUF Group — UIUC`}
+  description={item.summary}
+>
+
+  <section class="hero-page">
+    <div class="container">
+      <span class="section-label">News</span>
+      <h1 class="hero-page-title" style="font-size:clamp(1.6rem,3.5vw,2.25rem); line-height:1.25;">
+        {item.title}
+      </h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <a href="/news" class="news-back">
+        ← Back to News
+      </a>
+
+      <!-- Meta row: date + category badge -->
+      <div class="news-detail-meta">
+        <time class="news-date">{item.date}</time>
+        <span class={`news-tag ${item.tagClass}`}>{item.category}</span>
+      </div>
+
+      <hr class="news-detail-divider" />
+
+      <!-- Body — rendered as HTML from the data file -->
+      <div class="news-detail-body">
+        <Fragment set:html={item.body} />
+      </div>
+
+
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,55 @@
+---
+// news/index.astro — News list page
+// Automatically grouped by year, descending, from src/data/news.ts.
+// Clicking a headline navigates to the generated detail page.
+//
+// To add a news item: add an entry to src/data/news.ts.
+// No edits needed here.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { NEWS } from '../../data/news';
+
+// Sorted newest-first by actual date value
+function parseDate(d: string): number {
+  const fallback = new Date(d.replace('Spring', 'April').replace('Fall', 'October'));
+  return isNaN(fallback.getTime()) ? 0 : fallback.getTime();
+}
+const sorted = [...NEWS].sort((a, b) => parseDate(b.date) - parseDate(a.date));
+
+const years = [...new Set(sorted.map(n => n.year))];
+---
+<BaseLayout
+  title="News | NUF Group — UIUC"
+  description="Latest news, announcements, and updates from the Numerics and Unsteady Flows Group at UIUC."
+>
+  <main>
+    <section class="hero-page news-simple-hero">
+      <div class="container">
+        <span class="section-label">News</span>
+        <h1 class="hero-page-title">News &amp; Updates</h1>
+        <p class="hero-page-desc">
+          Announcements, awards, publications, and other updates from the NUF Group.
+        </p>
+      </div>
+    </section>
+
+    <section class="section news-simple-section">
+      <div class="container news-simple-container">
+        <div class="news-simple-list">
+          {sorted.map((item) => (
+            <div class="news-simple-item">
+              <div class="news-simple-date">{item.shortDate}</div>
+
+              <span class={`news-simple-tag news-tag ${item.tagClass}`}>
+                {item.category}
+              </span>
+
+              <a href={`/news/${item.slug}/`} class="news-simple-link">
+                {item.title}
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

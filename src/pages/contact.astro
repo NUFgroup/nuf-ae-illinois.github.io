@@ -1,0 +1,114 @@
+---
+// contact.astro — Contact page
+// TODO: update PI name, title, email, office address, and links
+// below to match the actual faculty member's details.
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Contact | NUF Group — UIUC"
+  description="Contact the Numerics and Unsteady Flows Group at UIUC — prospective students, collaborators, and general inquiries."
+>
+
+  <section class="hero-page">
+    <div class="container">
+      <span class="section-label">Contact</span>
+      <h1 class="hero-page-title">Get in Touch</h1>
+      <p class="hero-page-desc">We welcome inquiries from prospective students, collaborators, and anyone interested in our research.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-layout">
+
+      <!-- ── Left: contact info ── -->
+      <div>
+        <div class="info-card">
+          <p class="info-heading">Principal Investigator</p>
+          <div class="info-block">
+            <p class="pi-name">Prof. Andres Goza</p>
+            <p class="pi-title">Assistant Professor</p>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <p class="contact-label">Email</p>
+              <a href="mailto:agoza@illinois.edu" class="contact-value">agoza@illinois.edu</a>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <p class="contact-label">Office</p>
+              <p class="contact-value">Talbot Laboratory</p>
+              <p class="contact-sub">104 S Wright St, Urbana, IL 61801</p>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+            </div>
+            <div>
+              <p class="contact-label">Department</p>
+              <a href="#" class="contact-value">Department of Aerospace Engineering</a>
+              <p class="contact-sub">University of Illinois Urbana-Champaign</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-embed">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3051.365549649216!2d-88.23081622369556!3d40.11185637413797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880cd740707931a5%3A0xaf5e6ed0f0f5472c!2sTalbot%20Laboratory!5e0!3m2!1sen!2sus!4v1777405093912!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+
+      <!-- ── Right: prospective students + other inquiries ── -->
+      <div>
+        <div class="prospective-card">
+          <div class="prospective-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <h3>Prospective Graduate Students</h3>
+          <p>If you are interested in joining the NUF Group as a Ph.D. or MSc student, please apply to the <strong>UIUC Aerospace Engineering</strong> graduate program and mention Prof. Goza and our group in your statement of purpose.</p>
+          <p>We look for applicants with strong backgrounds in fluid mechanics, numerical methods, applied mathematics, or scientific computing (especially Julia, Python, or FORTRAN). Prior research experience and familiarity with CFD or computational methods is a plus.</p>
+          <p>If you have already been admitted or are considering applying, you are welcome to reach out by email with your CV and a brief description of your research interests.</p>
+          <a href="mailto:agoza@illinois.edu" class="btn btn-primary">Email Prof. Goza</a>
+        </div>
+
+        <div class="other-inquiries">
+          <h3>Other Inquiries</h3>
+          <div class="inquiry-list">
+            <div class="inquiry-item">
+              <div class="inquiry-dot"></div>
+              <div>
+                <p class="inquiry-title">Undergraduate Research</p>
+                <p class="inquiry-desc">We occasionally have openings for UIUC undergraduates interested in computational fluid dynamics or scientific software development. Email us with your resume and current coursework.</p>
+              </div>
+            </div>
+            <div class="inquiry-item">
+              <div class="inquiry-dot"></div>
+              <div>
+                <p class="inquiry-title">Research Collaborations</p>
+                <p class="inquiry-desc">We are open to academic and industry collaborations in areas related to unsteady flows, numerical methods, and flow-induced dynamics.</p>
+              </div>
+            </div>
+            <div class="inquiry-item">
+              <div class="inquiry-dot"></div>
+              <div>
+                <p class="inquiry-title">Software Support</p>
+                <p class="inquiry-desc">For questions or bug reports related to Immersa.jl, please open a GitHub issue. For general inquiries, email is fine.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>

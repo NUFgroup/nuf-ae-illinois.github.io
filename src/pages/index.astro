@@ -1,0 +1,186 @@
+---
+// index.astro — Home page
+// Recent news and publications are hardcoded here as a curated
+// highlight reel.  For the full lists, edit the data files:
+//   src/data/news.ts         ← all news items
+//   src/data/publications.ts ← all publications
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { NEWS } from '../data/news';
+import { PUBLICATIONS, PUB_YEARS } from '../data/publications';
+
+const recentNews = NEWS.slice(0, 3);
+
+// Build the same reversed-within-year order used on the publications page
+const recentPubs: typeof PUBLICATIONS = [];
+for (const year of PUB_YEARS) {
+  const group = PUBLICATIONS.filter(p => p.year === year).reverse();
+  recentPubs.push(...group);
+  if (recentPubs.length >= 3) break;
+}
+const top3Pubs = recentPubs.slice(0, 3);
+---
+<BaseLayout
+  title="Home | NUF Group — UIUC"
+  description="Numerics and Unsteady Flows Group at UIUC — computational fluid dynamics, fluid–structure interaction, and bio-inspired propulsion."
+>
+
+  <!-- ── Hero ── -->
+  <section class="hero-light">
+    <div class="container hero-light-content">
+      <p class="hero-light-eyebrow">Department of Aerospace Engineering · UIUC</p>
+      <h1 class="hero-light-title">Numerics &amp; <em>Unsteady Flows</em> Group</h1>
+      <p class="hero-light-description">
+        We develop high-fidelity numerical methods and open-source tools to understand
+        the rich physics of unsteady flows — from bio-inspired design to interaction with metamaterials.
+      </p>
+      <div class="hero-actions">
+        <a href="/research" class="btn btn-primary">Explore Our Research</a>
+        <a href="/team"     class="btn btn-outline">Meet the Team</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About ── -->
+  <section class="section">
+    <div class="container about-inner">
+      <div class="about-text">
+        <span class="section-label">Who We Are</span>
+        <h2 class="section-title">Advancing Computational Fluid Dynamics</h2>
+        <p>
+          Welcome! The Numerics and Unsteady Flows (NUF) Group at the University of Illinois
+          Urbana-Champaign investigates fundamental and applied problems at the intersection
+          of fluid mechanics and computational science. Our work combines rigorous numerical
+          method development with physics-driven analysis to reveal the mechanisms that govern
+          complex, unsteady fluid flows.
+        </p>
+        <p style="margin-top:1rem;">
+          We are part of the <strong>Department of Aerospace Engineering</strong> within the
+          Grainger College of Engineering and welcome collaboration across engineering, biology,
+          and applied mathematics.
+        </p>
+      </div>
+      <div>
+        <img
+          src="/images/flow-simulation.gif"
+          alt="Flow simulation"
+          class="about-image"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Research Areas ── -->
+  <section class="section section-alt">
+    <div class="container">
+      <span class="section-label">What We Study</span>
+      <h2 class="section-title">Research Areas</h2>
+      <p class="section-subtitle">Our work spans fluid–metamaterial interaction, modal flow analysis, bio-inspired design, and numerical method development.</p>
+      <div class="grid-4">
+
+        <article class="research-card">
+          <div class="card-image">
+            <img src="/images/research/fluid-metamaterial-interaction.png" alt="Fluid–Metamaterial Interaction" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Fluid–Metamaterial Interaction</h3>
+            <p class="card-desc">Studying how engineered mechanical metamaterials coupled with unsteady aerodynamic flows can enable passive and semi-passive flow control.</p>
+            <a href="/research#fluid-metamaterial-interaction" class="card-link">Learn more →</a>
+          </div>
+        </article>
+
+        <article class="research-card">
+          <div class="card-image">
+            <img src="/images/research/modal-analysis.png" alt="Modal Analysis of Fluid Flows" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Modal Analysis of Fluid Flows</h3>
+            <p class="card-desc">Identifying coherent structures and amplification mechanisms in unsteady flows using data-driven and operator-based modal techniques.</p>
+            <a href="/research#modal-analysis" class="card-link">Learn more →</a>
+          </div>
+        </article>
+
+        <article class="research-card">
+          <div class="card-image">
+            <img src="/images/research/bio-inspired.png" alt="Bio-Inspired Design" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Bio-Inspired Design</h3>
+            <p class="card-desc">Drawing from nature to design next-generation aerodynamic surfaces and micro air vehicles informed by bird flight mechanics.</p>
+            <a href="/research#bio-inspired-design" class="card-link">Learn more →</a>
+          </div>
+        </article>
+
+        <article class="research-card">
+          <div class="card-image">
+            <img src="/images/research/numerical-methods.png" alt="Numerical Method Development" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Numerical Method Development</h3>
+            <p class="card-desc">Developing immersed boundary formulations and open-source tools for high-fidelity simulation of unsteady incompressible flows.</p>
+            <a href="/research#numerical-methods" class="card-link">Learn more →</a>
+          </div>
+        </article>
+
+      </div>
+      <div class="section-cta">
+        <a href="/research" class="btn btn-outline">View All Research →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Recent News ── -->
+  <!-- To update: edit src/data/news.ts, then replace the slugs/content below -->
+  <section class="section section-alt">
+    <div class="container">
+      <span class="section-label">Latest Updates</span>
+      <h2 class="section-title">Recent News</h2>
+      <div class="grid-3">
+        {recentNews.map(n => (
+          <article class="news-card">
+            <div class="news-card-header">
+              <time class="news-date">{n.date}</time>
+              <span class={`news-tag ${n.tagClass}`}>{n.category}</span>
+            </div>
+            <h3 class="news-title"><a href={`/news/${n.slug}`}>{n.title}</a></h3>
+            <p class="news-body">{n.summary}</p>
+            <a href={`/news/${n.slug}`} class="news-link">Read more →</a>
+          </article>
+        ))}
+      </div>
+      <div class="section-cta">
+        <a href="/news" class="btn btn-outline">All News →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Newest Publications ── -->
+  <!-- To update: edit src/data/publications.ts -->
+  <section class="section">
+    <div class="container">
+      <span class="section-label">Our Work</span>
+      <h2 class="section-title">Newest Publications</h2>
+      <div class="pubs-list">
+        {top3Pubs.map(pub => (
+          <article class="pub-item highlighted">
+            <div class="pub-highlight-bar"></div>
+            <div class="pub-body">
+              <p class="pub-title">{pub.title}</p>
+              <p class="pub-authors">{pub.authors}</p>
+              <p class="pub-venue"><em>{pub.venue}</em>, {pub.year}</p>
+              <div class="pub-links">
+                {pub.doi   && <a href={pub.doi}   class="pub-link pub-link-doi"   target="_blank" rel="noopener noreferrer">DOI</a>}
+                {pub.pdf   && <a href={pub.pdf}   class="pub-link pub-link-pdf"   target="_blank" rel="noopener noreferrer">PDF</a>}
+                {pub.arxiv && <a href={pub.arxiv} class="pub-link pub-link-arxiv" target="_blank" rel="noopener noreferrer">arXiv</a>}
+              </div>
+            </div>
+            <span class="pub-year">{pub.year}</span>
+          </article>
+        ))}
+      </div>
+      <div class="section-cta">
+        <a href="/publications" class="btn btn-outline">Full Publication List →</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

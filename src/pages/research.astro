@@ -1,0 +1,95 @@
+---
+// research.astro — Research page
+// Edit research section text and tags directly in this file.
+// Each <div id="..."> anchor is linked from the home page cards
+// and from the footer.  Keep the id values stable.
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Research | NUF Group — UIUC"
+  description="Research areas of the NUF Group: fluid–structure interaction, bio-inspired propulsion, renewable energy harvesting, and numerical methods."
+>
+
+  <!-- ── Page Hero ── -->
+  <section class="hero-page">
+    <div class="container">
+      <span class="section-label">Research</span>
+      <h1 class="hero-page-title">Our Research Areas</h1>
+      <p class="hero-page-desc">We combine rigorous numerical method development with physics-driven investigation of unsteady flow phenomena across four interconnected research thrusts.</p>
+    </div>
+  </section>
+
+  <!-- ── Research Sections ── -->
+  <section class="section">
+    <div class="container">
+
+      <!-- ── Fluid–Metamaterial Interaction ── -->
+      <div id="fluid-metamaterial-interaction" class="research-section">
+        <img src="/images/research/fluid-metamaterial-interaction.png" alt="Fluid–Metamaterial Interaction" class="research-image" />
+        <div class="research-text-col">
+
+          <h2 class="research-heading">Fluid–Metamaterial Interaction</h2>
+          <div class="research-body">
+            <p>We study how engineered mechanical metamaterials interact with unsteady aerodynamic flows. These structures can exhibit unusual effective properties, such as tailored stiffness, band gaps, and direction-dependent responses, which may lead to new forms of passive or semi-passive flow control.</p>
+            <p>Our goal is to understand how these material properties influence the coupled fluid–structure dynamics when the metamaterial is embedded in or attached to aerodynamic surfaces such as airfoils. By analyzing the resulting motion, loading, vortex dynamics, and wake response, we aim to identify mechanisms that can improve aerodynamic performance.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Modal Analysis of Fluid Flows ── -->
+      <div id="modal-analysis" class="research-section alt">
+        <img src="/images/research/modal-analysis.png" alt="Modal Analysis of Fluid Flows" class="research-image" />
+        <div class="research-text-col">
+          <h2 class="research-heading">Modal Analysis of Fluid Flows</h2>
+          <div class="research-body">
+            <p>We use modal analysis techniques to identify coherent structures, dominant frequencies, and amplification mechanisms in unsteady fluid flows. These approaches help reduce complex flow fields into physically interpretable modes that reveal the organizing dynamics of the system.</p>
+            <p>Our work draws on data-driven methods such as proper orthogonal decomposition (POD) and dynamic mode decomposition (DMD), as well as operator-based approaches connected to the Navier–Stokes equations, including linear stability analysis and resolvent analysis.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Bio-Inspired Design ── -->
+      <div id="bio-inspired-design" class="research-section">
+        <img src="/images/research/bio-inspired.png" alt="Bio-Inspired Design" class="research-image" />
+        <div class="research-text-col">
+          <h2 class="research-heading">Bio-Inspired Design</h2>
+          <div class="research-body">
+            <p>We draw inspiration from nature to develop innovative solutions for fluid dynamics problems. Our work focuses on understanding the underlying mechanisms of biological systems and translating these insights into engineering applications.</p>
+            <p>Examples include the study of bird flight mechanics, and the design of bio-inspired micro air vehicles.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Numerical Methods ── -->
+      <div id="numerical-methods" class="research-section alt">
+        <img src="/images/research/numerical-methods.png" alt="Numerical Method Development" class="research-image" />
+        <div class="research-text-col">
+          <h2 class="research-heading">Numerical Method Development</h2>
+          <div class="research-body">
+            <p>Advances in computational fluid dynamics depend on robust, efficient numerical methods. We develop novel immersed boundary formulations for unsteady incompressible flows.</p>
+            <p>A major effort is the open-source Julia package Immersa.jl, which provides a modular, high-performance framework for immersed boundary simulations on structured grids.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Collaborations ── -->
+  <section class="section section-alt">
+    <div class="container collab-inner">
+      <div>
+        <span class="section-label">Work With Us</span>
+        <h2>Collaborations &amp; Funding</h2>
+        <p>We welcome collaborations with academia and industry on problems involving unsteady flows, numerical methods, and computational engineering. Current support includes grants from the Air Force Office of Scientific Research (AFOSR), National Science Foundation (NSF), and internal UIUC funding.</p>
+        <a href="/contact" class="btn btn-primary" style="margin-top:1.5rem;">Get in Touch</a>
+      </div>
+      <div class="collab-logos">
+        <img src="/images/logos/NSF.png" alt="NSF" class="collab-logo" />
+        <img src="/images/logos/AFOSR.png" alt="AFOSR" class="collab-logo" />
+        <img src="/images/logos/illinois.png" alt="University of Illinois" class="collab-logo" />
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

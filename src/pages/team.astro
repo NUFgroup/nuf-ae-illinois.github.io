@@ -1,0 +1,222 @@
+---
+// team.astro — Team page
+// All member data lives in src/data/team.ts.
+// To add/remove/edit someone, edit that file — this template
+// renders everything automatically.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { FACULTY, GRAD_STUDENTS, UNDERGRADS, GRAD_ALUMNI, UNDERGRAD_ALUMNI } from '../data/team';
+
+const emailIcon = `<svg width="14" height="14" viewBox="0 -3 27 27" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`;
+const linkIcon = `<svg viewBox="0 0 24 24" width="25" height="25" aria-hidden="true"><path fill="currentColor" d="M3.9 12c0-1.2.5-2.3 1.3-3.1l3.3-3.3c1.7-1.7 4.5-1.7 6.2 0 .4.4.4 1 0 1.4s-1 .4-1.4 0c-.9-.9-2.5-.9-3.4 0L6.6 10.3c-.9.9-.9 2.5 0 3.4s2.5.9 3.4 0l1.1-1.1c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-1.1 1.1c-1.7 1.7-4.5 1.7-6.2 0-.8-.8-1.3-1.9-1.3-3.1Zm6.6 1.5c-.4-.4-.4-1 0-1.4l3.6-3.6c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-3.6 3.6c-.4.4-1 .4-1.4 0Zm-1.2 4.9c-.4-.4-.4-1 0-1.4s1-.4 1.4 0c.9.9 2.5.9 3.4 0l3.3-3.3c.9-.9.9-2.5 0-3.4s-2.5-.9-3.4 0l-1.1 1.1c-.4.4-1 .4-1.4 0s-.4-1 0-1.4l1.1-1.1c1.7-1.7 4.5-1.7 6.2 0s1.7 4.5 0 6.2l-3.3 3.3c-1.7 1.7-4.5 1.7-6.2 0Z"/></svg>`;
+
+const githubIcon = `<svg viewBox="0 -2 24 27" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.42 7.86 10.95.58.1.79-.25.79-.56v-2.16c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.19-1.48 3.15-1.17 3.15-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>`;
+
+const linkedinIcon = `<svg viewBox="0 0 20 27" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S.02 4.88.02 3.5 1.14 1 2.5 1s2.48 1.12 2.48 2.5ZM.5 8h4V23h-4V8Zm7.5 0h3.83v2.05h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.67 4.8 6.14V23h-4v-7.85c0-1.87-.03-4.28-2.61-4.28-2.61 0-3.01 2.04-3.01 4.15V23h-4V8Z"/></svg>`;
+
+const scholarIcon = `<svg viewBox="0 0 20 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 3 1.5 8.5 12 14l10.5-5.5L12 3Zm0 12.2L5.2 11.6v3.2c0 2.1 3 3.8 6.8 3.8s6.8-1.7 6.8-3.8v-3.2L12 15.2Z"/></svg>`;
+---
+<BaseLayout
+  title="Team | NUF Group — UIUC"
+  description="Meet the members of the Numerics and Unsteady Flows Group at UIUC — faculty, graduate students, undergraduates, and alumni."
+>
+
+  <section class="hero-page">
+    <div class="container">
+      <span class="section-label">Team</span>
+      <h1 class="hero-page-title">Meet the Group</h1>
+      <p class="hero-page-desc">Our group brings together researchers with backgrounds in fluid mechanics, applied mathematics, computer science, and aerospace engineering.</p>
+    </div>
+  </section>
+
+  <!-- ── Faculty ── -->
+  <section class="section">
+    <div class="container">
+      <span class="section-label">Principal Investigator</span>
+      <h2 class="section-title">Faculty</h2>
+
+      <div class="member-list">
+        {FACULTY.map(f => (
+          <div class="member-row pi">
+            <div class="member-info">
+              <h3 class="member-name">{f.name}</h3>
+              <p class="member-role-label">{f.title}</p>
+              <p class="member-dept">{f.dept}</p>
+              <p class="member-focus">{f.focus}</p>
+              {f.education && (
+                <div class="member-education">
+                  <span class="edu-label">Education</span>
+                  {f.education.map(e => <p class="edu-item">{e}</p>)}
+                </div>
+              )}
+              <div class="member-links">
+                <a href={`mailto:${f.email}`} class="member-link-icon" aria-label={`Email ${f.name}`}>
+                  <Fragment set:html={emailIcon} />
+                </a>
+                {f.website && (
+                  <a href={f.website} class="member-link-icon" target="_blank" rel="noopener noreferrer" aria-label={`${f.name} website`}>
+                    <Fragment set:html={linkIcon} />
+                  </a>
+                )}
+                {f.github && (
+                  <a href={f.github} class="member-link-icon" target="_blank" rel="noopener noreferrer" aria-label={`${f.name} GitHub`}>
+                    <Fragment set:html={githubIcon} />
+                  </a>
+                )}
+                {f.linkedin && (
+                  <a href={f.linkedin} class="member-link-icon" target="_blank" rel="noopener noreferrer" aria-label={`${f.name} LinkedIn`}>
+                    <Fragment set:html={linkedinIcon} />
+                  </a>
+                )}
+                {f.scholar && (
+                  <a href={f.scholar} class="member-link-icon" target="_blank" rel="noopener noreferrer" aria-label={`${f.name} Google Scholar`}>
+                    <Fragment set:html={scholarIcon} />
+                  </a>
+                )}
+              </div>
+            </div>
+            <div class="member-photo-wrap">
+              {f.photo
+                ? <img src={f.photo} alt={f.name} />
+                : <span class="member-photo-initials">{f.initials}</span>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Graduate Students ── -->
+  <section class="section section-alt">
+    <div class="container">
+      <span class="section-label">Graduate</span>
+      <h2 class="section-title">Graduate Students</h2>
+
+      <div class="member-list">
+        {GRAD_STUDENTS.map(s => (
+          <div class="member-row">
+            <div class="member-info">
+              <h3 class="member-name">{s.name}</h3>
+              <p class="member-role-label">{s.role}</p>
+              <p class="member-focus">{s.focus}</p>
+
+              <div class="member-links">
+                {s.email && (
+                  <a href={`mailto:${s.email}`} class="member-link-icon" aria-label={`Email ${s.name}`}>
+                    <Fragment set:html={emailIcon} />
+                  </a>
+                )}
+
+                {s.website && (
+                  <a href={s.website} class="member-link-icon" target="_blank" rel="noopener noreferrer" aria-label={`${s.name} website`}>
+                    <Fragment set:html={linkIcon} />
+                  </a>
+                )}
+
+                {s.github && (
+                  <a href={s.github} class="member-link-icon" target="_blank" rel="noopener noreferrer" aria-label={`${s.name} GitHub`}>
+                    <Fragment set:html={githubIcon} />
+                  </a>
+                )}
+
+                {s.linkedin && (
+                  <a href={s.linkedin} class="member-link-icon" target="_blank" rel="noopener noreferrer" aria-label={`${s.name} LinkedIn`}>
+                    <Fragment set:html={linkedinIcon} />
+                  </a>
+                )}
+
+                {s.scholar && (
+                  <a href={s.scholar} class="member-link-icon" target="_blank" rel="noopener noreferrer" aria-label={`${s.name} Google Scholar`}>
+                    <Fragment set:html={scholarIcon} />
+                  </a>
+                )}
+
+              </div>
+            </div>
+
+            <div class="member-photo-wrap">
+              {s.photo
+                ? <img src={s.photo} alt={s.name} />
+                : <span class="member-photo-initials">{s.initials}</span>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Undergraduates ── -->
+  {UNDERGRADS.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <span class="section-label">Undergraduate</span>
+        <h2 class="section-title">Undergraduate Researchers</h2>
+        <div class="grid-4">
+          {UNDERGRADS.map(u => (
+            <article class="person-card compact">
+              <div class="person-avatar">
+                {u.photo
+                  ? <img src={u.photo} alt={u.name} />
+                  : u.initials}
+              </div>
+              <div class="person-info">
+                <p class="person-name">{u.name}</p>
+                <p class="person-role">{u.role}</p>
+                <p class="person-focus">{u.focus}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ── Graduate Alumni ── -->
+  {GRAD_ALUMNI.length > 0 && (
+    <section class="section section-alt">
+      <div class="container">
+        <span class="section-label">Alumni</span>
+        <h2 class="section-title">Graduate Alumni</h2>
+        <ul class="grad-alumni-list">
+          {GRAD_ALUMNI.map(a => (
+            <li class="grad-alumni-item">
+              <span class="alumni-name-row">
+                <span class="alumni-name">{a.name}</span>
+                {a.linkedin && (
+                  <a href={a.linkedin} class="alumni-linkedin" target="_blank" rel="noopener noreferrer" aria-label={`${a.name} LinkedIn`}>
+                    <Fragment set:html={linkedinIcon} />
+                  </a>
+                )}
+              </span>
+              <span class="alumni-title">{a.degree}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- ── Undergraduate Alumni ── -->
+  {UNDERGRAD_ALUMNI.length > 0 && (
+    <section class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Undergraduate Alumni</h2>
+        <ul class="undergrad-list">
+          {UNDERGRAD_ALUMNI.map(a => (
+            <li>{a.name} <span class="undergrad-degree">({a.degree})</span></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- ── Join CTA ── -->
+  <section class="section join-section">
+    <div class="container">
+      <span class="section-label">Join Us</span>
+      <h2>Prospective Students</h2>
+      <p>We are always looking for curious, driven students interested in computational fluid dynamics, numerical methods, or related areas. Prospective PhD applicants should apply through the UIUC Aerospace Engineering graduate program and mention the NUF Group in their statement of purpose.</p>
+      <a href="/contact" class="btn btn-primary" style="margin-top:1.5rem;">Contact Prof. Goza</a>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,68 @@
+---
+// Header.astro
+// Sticky site header with logo and navigation.
+// Active nav link is highlighted based on the current URL path.
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const NAV_LINKS = [
+  { label: 'Home',         href: '/' },
+  { label: 'Research',     href: '/research' },
+  { label: 'Team',         href: '/team' },
+  { label: 'Publications', href: '/publications' },
+  { label: 'Software',     href: '/software' },
+  { label: 'News',         href: '/news' },
+  { label: 'Contact',      href: '/contact' },
+];
+
+// A link is active if the current path exactly matches or is
+// a sub-path (e.g. /news/some-slug → /news is active).
+function isActive(href: string): boolean {
+  return currentPath === href || currentPath.startsWith(href + '/');
+}
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="site-logo">
+      <div class="logo-mark">NUF</div>
+      <div class="logo-text">
+        <span class="logo-name">Numerics &amp; Unsteady Flows Group</span>
+        <span class="logo-affil">University of Illinois Urbana-Champaign</span>
+      </div>
+    </a>
+
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      {NAV_LINKS.map(({ label, href }) => (
+        <a href={href} class={`nav-link${isActive(href) ? ' active' : ''}`}>
+          {label}
+        </a>
+      ))}
+    </nav>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<script>
+  // Mobile nav toggle — runs client-side
+  const toggle = document.getElementById('nav-toggle');
+  const nav    = document.getElementById('site-nav');
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    nav?.classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      nav?.classList.remove('open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
